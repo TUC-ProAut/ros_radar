@@ -1,8 +1,11 @@
 # ignore subversion
 .svn
 
-# ignore precompiled python files
+# ignore old python scripts and precompiled python files
+*_old.py
 *.pyc
 
-# ignore old python scripts
-*_old.py
+# ignore documentation (doxygen)
+Doxyfile
+html/
+latex/
