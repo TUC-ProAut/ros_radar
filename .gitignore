@@ -1,0 +1,8 @@
+# ignore subversion
+.svn
+
+# ignore precompiled python files
+*.pyc
+
+# ignore old python scripts
+*_old.py

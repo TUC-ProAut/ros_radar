@@ -1,0 +1,10 @@
+<launch>
+
+    <!-- launching the node for extracting target measurements from can message  -->
+    <node name="radar_pa_node" pkg="radar_pa"
+      type="radar_pa_node" output="screen" />
+
+    <!-- publish the targets meaurements in pointcloud -->
+    <node name="radar2pcd_pa_node" pkg="radar_pa"
+      type="radar2pcd_pa_node" output="screen" />
+</launch>
