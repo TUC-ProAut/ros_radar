@@ -3,21 +3,21 @@
 
 # *****************************************************************************
 #                                                                             *
-#       radar2pcd_pa_node.py                                                  *
+# radar2pcd_pa_node.py                                                        *
 #                                                                             *
 # *****************************************************************************
 #                                                                             *
-#       github repository                                                     *
-#               https://github.com/TUC-ProAut/radar_pa                        *
+# github repository                                                           *
+#     https://github.com/TUC-ProAut/radar_pa                                  *
 #                                                                             *
-#       Chair of Automation Technology, Technische Universität Chemnitz       *
-#            https://www.tu-chemnitz.de/etit/proaut                           *
+# Chair of Automation Technology, Technische Universität Chemnitz             *
+#     https://www.tu-chemnitz.de/etit/proaut                                  *
 #                                                                             *
 # *****************************************************************************
 #                                                                             *
 # BSD 3-Clause License                                                        *
 #                                                                             *
-# Copyright (c) 2018, Karim Haggag, Technische Universität Chemnitz           *
+# Copyright (c) 2018-2019, Karim Haggag, Technische Universität Chemnitz      *
 # All rights reserved.                                                        *
 #                                                                             *
 # Redistribution and use in source and binary forms, with or without          *
@@ -50,8 +50,9 @@
 # *****************************************************************************
 #                                                                             *
 # This node converts the radar_messages to PointCloud.msg                     *
+#                                                                             *
 # Supported radars:                                                           *
-#       * Bosch GPR v1.0                                                      *
+#     * Bosch GPR v1.0                                                        *
 #                                                                             *
 # *****************************************************************************
 
@@ -70,7 +71,7 @@ class radar2pcdPaNode():
 
     def __init__(self):
 
-        rospy.init_node ('radar2pcd_pa_node.py', anonymous=True)
+        rospy.init_node('radar2pcd_pa_node.py', anonymous=True)
         rospy.Subscriber('radar_messages', radar_msg, self.callback)
 
         self.pcpub = rospy.Publisher('radar_pcd', PointCloud, queue_size=10)
@@ -86,7 +87,7 @@ class radar2pcdPaNode():
         self.out_Pc.points = [None] * num_targets
 
         # -- channels must be ChannelFloat32()
-        self.out_Pc.channels = [ ChannelFloat32(), ChannelFloat32(), \
+        self.out_Pc.channels = [ChannelFloat32(), ChannelFloat32(), \
           ChannelFloat32(), ChannelFloat32(), ChannelFloat32(), \
           ChannelFloat32(), ChannelFloat32(), ChannelFloat32(), \
           ChannelFloat32(), ChannelFloat32()]
@@ -116,43 +117,44 @@ class radar2pcdPaNode():
     def callback(self, data):
         self.out_Pc.header.stamp = data.header.stamp
 
-        for i in range (len(self.out_Pc.points)):
+        for i in range(len(self.out_Pc.points)):
 
-                # -- check if target is valid
-                if ( data.data_A[i].is_target == 1) :
 
-                    # -- compute each x,y for each point
-                    x= data.data_A[i].distance * (math.cos(data.data_A[i].angle))
-                    y= data.data_A[i].distance * (math.sin(data.data_A[i].angle))
+            # -- check if target is valid
+            if (data.data_A[i].is_target == 1):
 
-                    # --  fill the channels wit Id , distance,..
-                    self.out_Pc.channels[0].values[i] = data.data_A[i].ID
-                    self.out_Pc.channels[1].values[i] = data.data_A[i].distance
-                    self.out_Pc.channels[2].values[i] = data.data_A[i].velocity
-                    self.out_Pc.channels[3].values[i] = data.data_A[i].power
-                    self.out_Pc.channels[4].values[i] = data.data_A[i].angle
-                    self.out_Pc.channels[5].values[i] = data.data_B[i].distance_deviation
-                    self.out_Pc.channels[6].values[i] = data.data_B[i].angle_deviation
-                    self.out_Pc.channels[7].values[i] = data.data_B[i].velocity_deviation
-                    self.out_Pc.channels[8].values[i] = data.data_B[i].proability_target
-                    self.out_Pc.channels[9].values[i] = data.data_A[i].is_target
+                # -- compute each x,y for each point
+                x = data.data_A[i].distance * (math.cos(data.data_A[i].angle))
+                y = data.data_A[i].distance * (math.sin(data.data_A[i].angle))
 
-                else :
-                    # -- assign NAN to not valid target
-                    x= float('nan')
-                    y= float('nan')
-                    self.out_Pc.channels[0].values[i] = float('nan')
-                    self.out_Pc.channels[1].values[i] = float('nan')
-                    self.out_Pc.channels[2].values[i] = float('nan')
-                    self.out_Pc.channels[3].values[i] = float('nan')
-                    self.out_Pc.channels[4].values[i] = float('nan')
-                    self.out_Pc.channels[5].values[i] = float('nan')
-                    self.out_Pc.channels[6].values[i] = float('nan')
-                    self.out_Pc.channels[7].values[i] = float('nan')
-                    self.out_Pc.channels[8].values[i] = float('nan')
-                    self.out_Pc.channels[9].values[i] = float('nan')
+                # --  fill the channels wit Id , distance,..
+                self.out_Pc.channels[0].values[i] = data.data_A[i].ID
+                self.out_Pc.channels[1].values[i] = data.data_A[i].distance
+                self.out_Pc.channels[2].values[i] = data.data_A[i].velocity
+                self.out_Pc.channels[3].values[i] = data.data_A[i].power
+                self.out_Pc.channels[4].values[i] = data.data_A[i].angle
+                self.out_Pc.channels[5].values[i] = data.data_B[i].distance_deviation
+                self.out_Pc.channels[6].values[i] = data.data_B[i].angle_deviation
+                self.out_Pc.channels[7].values[i] = data.data_B[i].velocity_deviation
+                self.out_Pc.channels[8].values[i] = data.data_B[i].proability_target
+                self.out_Pc.channels[9].values[i] = data.data_A[i].is_target
 
-                self.out_Pc.points[i] = Point32(x,y,0)
+            else:
+                # -- assign NAN to not valid target
+                x = float('nan')
+                y = float('nan')
+                self.out_Pc.channels[0].values[i] = float('nan')
+                self.out_Pc.channels[1].values[i] = float('nan')
+                self.out_Pc.channels[2].values[i] = float('nan')
+                self.out_Pc.channels[3].values[i] = float('nan')
+                self.out_Pc.channels[4].values[i] = float('nan')
+                self.out_Pc.channels[5].values[i] = float('nan')
+                self.out_Pc.channels[6].values[i] = float('nan')
+                self.out_Pc.channels[7].values[i] = float('nan')
+                self.out_Pc.channels[8].values[i] = float('nan')
+                self.out_Pc.channels[9].values[i] = float('nan')
+
+            self.out_Pc.points[i] = Point32(x, y, 0)
 
         self.pcpub.publish(self.out_Pc)
 

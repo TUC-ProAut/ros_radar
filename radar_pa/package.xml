@@ -2,7 +2,7 @@
 <package format="2">
   <name>radar_pa</name>
   <version>1.0.0</version>
-  <description>ProAuto radar package</description>
+  <description>ProAut radar package</description>
   <maintainer email="wepet@hrz.tu-chemnitz.de">Peter Weissig</maintainer>
   <maintainer email="kahag@hrz.tu-chemnitz.de">Karim Haggag</maintainer>
   <license>BSD</license>

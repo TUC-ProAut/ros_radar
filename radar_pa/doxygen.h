@@ -1,4 +1,4 @@
-/** @mainpage ProAut Radar
+/** @mainpage ProAut Radar package
  *
  * @section intro_sec Introduction
  *
@@ -52,16 +52,14 @@ rosrun radar_pa radar2pcd_pa_node@endverbatim
  *  + https://wiki.ros.org/socketcan_bridge
  *
  * ROS packages: (upcoming)
- *  + ros-indigo-radar-pa
  *  + ros-kinetic-radar-pa
- *  + ros-lunar-radar-pa
+ *  + ros-melodic-radar-pa
  *
  *
  * @section doc_sec ROS Documentation
  *
  * ROS-Distribution    | Documentation
  * --------------------|---------------
- * Indigo              | <a href="http://docs.ros.org/indigo/api/radar_pa/html/index.html">docs.ros.org</a>
  * Kinetic             | <a href="http://docs.ros.org/kinetic/api/radar_pa/html/index.html">docs.ros.org</a>
- * Lunar               | <a href="http://docs.ros.org/lunar/api/radar_pa/html/index.html">docs.ros.org</a>
+ * Melodic             | <a href="http://docs.ros.org/melodic/api/radar_pa/html/index.html">docs.ros.org</a>
  **/

@@ -1,10 +1,14 @@
 <launch>
 
-    <!-- launching the node for extracting target measurements from can message  -->
-    <node name="radar_pa_node" pkg="radar_pa"
-      type="radar_pa_node" output="screen" />
+    <!-- launching the node for peak-usb interface -->
+    <node name="socketcan_node" pkg="socketcan_bridge"
+        type="socketcan_bridge_node" output="screen" />
+
+    <!-- launching the node for extracting target measurements from can -->
+    <node name="radar_pa_node" pkg="radar_pa" type="radar_pa_node.py" />
 
     <!-- publish the targets meaurements in pointcloud -->
     <node name="radar2pcd_pa_node" pkg="radar_pa"
-      type="radar2pcd_pa_node" output="screen" />
+        type="radar2pcd_pa_node.py" output="screen" />
+
 </launch>
