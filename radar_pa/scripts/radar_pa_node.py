@@ -130,11 +130,11 @@ class RadarPaNode:
             # -- check if the message have the same counter then publish it
             if (data.id == 607):
                 if (self.check_message_counter() is True):#== True):
-                    rospy.loginfo('the whole packet is completed')
+                    rospy.logdebug('the whole packet is completed')
                     self.pub.publish(self.global_msg)
 
         else:
-            rospy.loginfo('can id out of range %s', hex(data.id))
+            rospy.logdebug('can id out of range %d (%s)', data.id, hex(data.id))
 
     # ***************** fill the message with msg A , B  *****************
 
@@ -178,7 +178,3 @@ if __name__ == '__main__':
 
     except rospy.ROSInterruptException:
         pass
-
-
-
-
