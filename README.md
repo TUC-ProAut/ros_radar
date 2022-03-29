@@ -8,7 +8,10 @@ The data from the sensor is published onto 'radar_messages' topic. Additionally,
 
 Moreover, it is possible to republish the data through a standard pointcloud on 'radar_pcd'. Please refer to [radar2pcd_pa_node](#radar2pcd_pa_node).
 
-
+## Contact information
+- [Karim Haggag](https://www.tu-chemnitz.de/etit/proaut/en/team.html)
+- [Peter Weissig](https://www.tu-chemnitz.de/etit/proaut/de/mitarbeiter/peterWeissig.html)
+- [Sven Lange](https://www.tu-chemnitz.de/etit/proaut/sven_lange)
 ## radar_pa_node
 
 ```
